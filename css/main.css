@@ -1,6 +1,6 @@
 /*Reset Styling*/
 
-/*html, body, div, span, applet, object, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -19,6 +19,100 @@ time, mark, audio, video {
     box-sizing: border-box;
     font: inherit;
     font-size: 100%;
-    outline: solid 1px;
-}*/ 
+    /*outline: solid 1px;*/
+}
 
+body {
+	background-image: url('../img/black-smoke.jpg');
+	color: #747474;
+}
+
+.game-intro {
+	display: none;
+	z-index: 1000;
+}
+
+.game-header {
+	position: relative;
+	height: 12rem;
+	width: 100%;
+	padding: 0rem 2rem;
+	font-size: 1.3rem;
+}
+
+.header-list > li {
+	display: inline-block;
+}
+
+#score-tracker {
+	float: left;
+	margin-top: 1rem;
+	/*outline: solid 1px red;*/
+}
+
+#header-logo {
+	position: absolute;
+	margin-left: -16rem;
+	left: 50%;
+	height: 11rem;
+	width: 32rem;
+	overflow: hidden;
+
+}
+
+#header-logo img {
+	position: absolute;
+	max-width: 100%;
+	opacity: 0.4;
+}
+
+#new-game {
+	float: right;
+	margin-top: 1rem;
+	/*outline: solid 1px red;*/
+}
+
+.game-space {
+	position: relative;
+	width: 60rem;
+	padding: 2rem;
+	margin: 2rem auto;
+}
+
+.game-space h2 {
+	text-align: center;
+	font-size: 1.6rem;
+}
+
+.answer-list > button {
+	list-style: none;
+	display: inline-block;
+	background-color: transparent;
+	border: none;
+	margin: 2rem 1rem;
+}
+
+.circular img {
+	width: 175px;
+	height: 175px;
+	border-radius: 87.5px;
+	-webkit-border-radius: 87.5px;
+	-moz-border-radius: 87.5px;
+	/*box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);*/
+}
+
+/*#submit {
+	position: relative;
+	width: 10rem;
+	margin-left: -5rem;
+	left: 50%;
+	background-color: transparent;
+	border-style: none;
+	font-size: 1.5rem;
+}*/
+
+#image1 {
+	
+}
