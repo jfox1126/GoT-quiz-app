@@ -84,7 +84,7 @@ body {
 	font-size: 1.6rem;
 }
 
-.answer-list > button {
+.answer-space > button {
 	list-style: none;
 	display: inline-block;
 	background-color: transparent;
