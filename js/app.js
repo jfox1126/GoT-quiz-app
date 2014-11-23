@@ -8,7 +8,7 @@ $(document).ready(function () {
 		this.question = "What is the sigil of House "+house+"?",
 		this.correctVal = "Correct! The sigil of House "+house+" is a "+correctVal+"."
 	};
-	var arryn = new answer ("Aryrn", "arryn", "As High as Honor", "falcon");
+	var arryn = new answer ("Arryn", "arryn", "As High as Honor", "falcon");
 	var baratheon = new answer ('Baratheon', "baratheon", 'Ours is the Fury', 'crowned stag');
 	var greyjoy = new answer ('Greyjoy', "greyjoy", 'We Do Not Sow','kraken');
 	var lannister = new answer ('Lannister', "lannister", 'Hear me Roar!', 'lion');
@@ -37,44 +37,103 @@ $(document).ready(function () {
 	    }
 	    return array;
 	};
-	function randomize() {
+	function randomAns() {
 		shuffleArray(answerList);
 		for (i=1; i<=4; i++) {
 			$('#image'+i).attr('src', answerList[i-1].sigilImg);
+			$('#button'+i).attr('value', answerList[i-1].house)
 		};
-		$('#question').text(answerList[Math.floor(Math.random()*4)].question);
-	}
-	randomize();
+	};
+	randomAns();
+
+	//Randomly choose question from selected answers and deletes that entry from answerList
+	var rand;
+	function randomQ () {
+		rand = Math.floor(Math.random()*4)
+		$('#question').text(answerList[rand].question);
+		$('#question').attr('value', answerList[rand].house);
+	};
+	randomQ();
+
+	//Play game button on intro page
+	$('#play-game').click(function() {
+		$('.game-intro').fadeOut(700);
+	});
 	
+	//Score tracker
+	var round = 1;
+	var score = 0;
 
+	//Click variable to prevent double clicking errors
+	var clickNum = 0;
 
-});
-
-
-
-	/*Question List
-	var qArryn = "What is the seal of House Arryn?";
-	var qBaratheon = "What is the seal of House Baratheon?";
-	var qGreyjoy = "What is the seal of House Greyjoy?";
-	var qLannister = "What is the seal of House Lannister?";
-	var qMartell = "What is the seal of House Martell?";
-	var qStark = "What is the seal of House Stark?";
-	var qTargaryen = "What is the seal of House Targaryen?";
-	var qTully = "What is the seal of House Tully?";
-	var qTyrell = "What is the seal of House Tyrell?";
-	var questionList = [qArryn, qBaratheon, qGreyjoy, qLannister, qMartell, qStark, qTargaryen, qTully, qTyrell];
-	Test that array of questions is accurate
-	for (i = 0; i<=8; i++) {
-		console.log(questionList[i])
-	};*/
-
-	/*var randomize = function () {
-		var randArray = [];
-		for (i=1; i<=4; i++) {
-			var rand = answerList[Math.floor(Math.random() * answerList.length)];
-			randArray.push(rand);
-			$('#image'+i).attr('src', randArray[i-1].sigilImg);
+	//Player selects answer
+	$('.answers').click(function() {
+		var selected = ($(this).val());
+		var ans = $('#question').attr("value");
+		if (clickNum <1) {
+			if (selected === ans) {
+				$('#feedback').text(answerList[rand].correctVal);
+				score = score +1;
+				$('#score').text(score);
+			} else {
+				$('#feedback').text("Incorrect! This is the sigil of House "+selected);
+			};
+			$('#feedback').fadeIn();
+			answerList.splice((rand), 1);
+			if (answerList.length >= 4) {
+				$('#next').delay(800).fadeIn();
+			} else {
+				$('#finish').delay(800).fadeIn();
+			};
 		};
-		console.log(randArray[Math.floor(Math.random()*randArray.length)]);
-		$('#question').text(randArray[Math.floor(Math.random()*randArray.length)].question);
-	}*/
+		clickNum = 1;
+	});
+
+	//Next Question
+	$('#next').click(function() {
+		$('#feedback').fadeOut();
+		$('#next').fadeOut();
+		$('.game-space').fadeOut(400, function() {
+			randomAns();
+			randomQ();
+			round = round+1;
+			$('#round').text(round);
+		});
+		$('.game-space').fadeIn(600);
+		clickNum = 0;
+	});
+
+	//Finish Button
+	$('#finish').click(function () {
+		$('#final-score').text(score+"/6.");
+		if(score > 4) {
+			$('#win-lose').text("Victory!");
+			$('#game-over-gif').attr('src', "img/victory.gif");
+		} else {
+			$('#win-lose').text("Defeat!");
+			$('#game-over-gif').attr('src', "img/defeat.gif");
+		}
+		$('.main').remove();
+		$('#play-game').remove();
+		$('.game-over').show();
+		$('.game-intro').fadeIn(function() {
+			$('#your-score').delay(600).fadeIn();
+			$('#game-over-gif').delay(2400).fadeIn();
+		});
+	});
+
+	//New Game
+	$('#new-game').click(function() {
+		$('.game-space').fadeOut(400, function() {
+			answerList = [arryn,baratheon,greyjoy,lannister,martell,stark,targaryen,tully,tyrell];randomAns();
+			randomQ();
+			round = 1;
+			score = 0;
+			$('#round').text(round);
+			$('#score').text(score);
+		});
+		$('.game-space').fadeIn(600);
+		clickNum = 0;
+	});
+});

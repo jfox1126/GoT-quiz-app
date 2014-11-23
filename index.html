@@ -17,32 +17,40 @@
 <header class="game-header">
 	<ul class="header-list">
 		<li id = "score-tracker">
-			Score: 0/1
+			<p>Round: <span id="round">1</span> of 6</p>
+			<p>Score: <span id="score">0</span></p>
 		</li>
 		<li id = "header-logo">
 			<img src="img/header-logo2.jpg" alt="">
 		</li>
-		<li id = "new-game">
+		<button id = "new-game">
 			New Game
-		</li>
+		</button>
 	</ul>
 </header>
 
 <section class="game-intro">
-	<div class="main"></div>
-	<button>Play the Game of Thrones</button>
+	<div class="main"><img src="img/ned-throne2.png" alt="" id="ned-throne"></div>
+	<div class="game-over">
+		<p>When you play the game of thrones, you win... or you die</p>
+		<br>
+		<p id ="your-score">Your score: <span id="final-score">4/6.</span><span id="win-lose">You lose!</span></p>
+		<img id="game-over-gif" src="img/defeat.gif" alt="">
+	</div>
+	<button id="play-game">P l a y</button>
 </section>
 
 <section class="game-space">
 	<h2 id="question">What is the seal of House Targaryen?</h2>
 	<ul class="answer-space">
-		<button class="answers circular"><img id="image1" src=""></button>
-		<button class="answers circular"><img id="image2" src=""></button>
-		<button class="answers circular"><img id="image3" src=""></button>
-		<button class="answers circular"><img id="image4" src=""></button>
+		<button class="answers circular" id="button1"><img id="image1" src=""></button>
+		<button class="answers circular" id="button2"><img id="image2" src=""></button>
+		<button class="answers circular" id="button3"><img id="image3" src=""></button>
+		<button class="answers circular" id="button4"><img id="image4" src=""></button>
 	</ul>
-	<!--<button id="submit">Submit</button>-->
 	<h2 id="feedback">Correct! House Targaryen is a three-headed dragon.</h2>
+	<button  class="continue-button" id="next">Next Question</button>
+	<button class="continue-button" id="finish">Finish</button>
 </section>
 	
 </body>
