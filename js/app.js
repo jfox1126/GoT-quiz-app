@@ -1,5 +1,19 @@
 $(document).ready(function () {
-	
+	//Pre-load images into cache 
+	function preloadImages(srcs) {
+    	if (!preloadImages.cache) {
+        preloadImages.cache = [];
+    	}
+    	var img;
+    	for (var i = 0; i < srcs.length; i++) {
+	        img = new Image();
+	        img.src = srcs[i];
+	        preloadImages.cache.push(img);
+	    }
+	}
+	var imageSrcs = ["img/arryn-sigil-partial.png", "img/baratheon-sigil-partial.png", "img/greyjoy-sigil-partial.png", "img/lannister-sigil-partial.png", "img/martell-sigil-partial.png", "img/stark-sigil-partial.png", "img/targaryen-sigil-partial.png", "img/tully-sigil-partial.png", "img/tyrell-sigil-partial.png", "img/arryn-sigil-partial.png", "img/header-logo2.jpg", "img/black-smoke.jpg"];
+	preloadImages(imageSrcs);
+
 	//Answer List
 	function answer (house, sigilImg, words, correctVal) {
 		this.house = house,
